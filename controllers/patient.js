@@ -48,17 +48,17 @@ router.addPatients = ('/', (req, res, next) => {
         });
 });
 
-//search by ID
-router.searchPatients = ('/:id', (req, res, next) => {
-    const id = req.params.id;
-    PatientInformation.findById({ '_id': id })
+//search by name
+router.searchPatients = ('/:name', (req, res, next) => {
+    const name = req.params.name;
+    PatientInformation.findOne({ 'name': name })
         .exec()
         .then(doc => {
             console.log("from database", doc);
             if (doc) {
                 res.status(200).json(doc);
             } else {
-                res.status(404).json({ message: "No valid ID entered" });
+                res.status(404).json({ message: "No valid name entered" });
 
             }
         })
@@ -67,6 +67,7 @@ router.searchPatients = ('/:id', (req, res, next) => {
             res.status(500).json({ error: err })
         });
 });
+
 
 //remove patient from the db
 router.removePatient = ('/:id', (req, res) => {

@@ -13,8 +13,8 @@ const router = express.Router();
 router.get('/', checkAuth, patientController.getAllPatients);
 // Insert JSON straight into MongoDB
 router.post('/', checkAuth, patientController.addPatients);
-//search DB by id
-router.get('/:id', checkAuth, patientController.searchPatients);
+//search DB by name
+router.get('/:name', checkAuth, patientController.searchPatients);
 //remove patient from the db
 router.delete('/:id', checkAuth, patientController.removePatient);
  //update patient information
