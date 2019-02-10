@@ -78,42 +78,31 @@ import fetch from 'node-fetch';
 
 let token;
 
-    beforeAll((done) => {
-    //     request.agent(app)
-    //   .post('api/user/login')
-    //     .send({
-    //       username: 'meco',
-    //       password: 'password',
-    //     })
-    //     .end((err,response) => {
-    //       token = response; 
-    //       console.log(err, response);
-    //       done();
-    //     });
-    fetch('https://api.myjson.com/bins/s7gag')
-    .then((response) => {
-        return response.json();
-    })
-    .then(myjson => {
-        console.log(myjson)
-    })
-
-    }, 10000);
-
-
-        
-        // test('It responds with JSON', (done) => {
-        //   request(app).get('api/appointment')
-        //     .set('Authorization', `Bearer ${token}`)
-        //     .then((response) => {
-        //       expect(response.statusCode).toBe(200);
-        //       expect(response.type).toBe('application/json');
-              
-        //     });
-        //     done()
-        // });
-
-
-        test('blah blah', () => {
-            expect(true).toBe(true);
+beforeAll((done) => {
+    request(app)
+        .post('/api/user/login')
+        .send({
+            username: 'meco',
+            password: 'password',
         })
+        .expect(200)
+        .end((err, response) => {
+            token = response.body.token;
+            console.log(token)
+            done()
+        });
+});
+
+
+test('It responds with JSON', (done) => {
+    request(app).get('/api/appointment')
+        .set('Authorization', `Bearer ${token}`)
+        .then((response) => {
+            expect(response.statusCode).toBe(200);
+            expect(response.type).toBe('application/json');
+            done()
+        });
+
+});
+
+
