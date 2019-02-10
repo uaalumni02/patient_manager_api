@@ -3,6 +3,7 @@ import express from 'express';
 import mongoose  from 'mongoose';
 import cors from 'cors';
 
+
 //import models
 import PatientInformation from './models/patient';
 import AppointmentInformation from './models/appointment';
@@ -38,5 +39,4 @@ app.get('/', (req, res) => {
     res.send('Please use routes for application access');
 });
 
-
-app.listen(3000, () => console.log('server is running'));
+export default app;

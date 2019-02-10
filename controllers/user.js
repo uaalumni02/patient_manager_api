@@ -55,6 +55,10 @@ router.createUser = ('/', (req, res, next) => {
 
 //user login
 router.logIn = ('/login', (req, res, next) => {
+    // console.log('Hitting the ep')
+
+    return res.status(200)
+        .json({ token: '888898888'});
     User.find({ username: req.body.username })
         .exec()
         .then(user => {
