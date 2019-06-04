@@ -1,6 +1,8 @@
 import app from '../app';
 import request from 'supertest';
 import fetch from 'node-fetch';
+import faker from 'faker';
+
 
 // test("responds with patient's info", (done) => {
 //     request(app).get('/api/patient')
@@ -76,33 +78,56 @@ import fetch from 'node-fetch';
 
 
 
-let token;
+// let token;
 
-beforeAll((done) => {
-    request(app)
-        .post('/api/user/login')
-        .send({
-            username: 'meco',
-            password: 'password',
-        })
-        .expect(200)
-        .end((err, response) => {
-            token = response.body.token;
-            console.log(token)
-            done()
-        });
-});
+// beforeAll((done) => {
+//     request(app)
+//         .post('/api/user/login')
+//         .send({
+//             username: 'meco',
+//             password: 'password',
+//         })
+//         .expect(200)
+//         .end((err, response) => {
+//             token = response.body.token;
+//             console.log(token)
+//             done()
+//         });
+// });
 
 
-test('It responds with JSON', (done) => {
-    request(app).get('/api/appointment')
-        .set('Authorization', `Bearer ${token}`)
-        .then((response) => {
-            expect(response.statusCode).toBe(200);
-            expect(response.type).toBe('application/json');
-            done()
-        });
+// test('It responds with JSON', (done) => {
+//     request(app).get('/api/appointment')
+//         .set('Authorization', `Bearer ${token}`)
+//         .then((response) => {
+//             expect(response.statusCode).toBe(200);
+//             expect(response.type).toBe('application/json');
+//             done()
+//         });
 
-});
+// });
+
+const patientInfo = {
+    name: faker.name.findName(),
+    email: faker.internet.email(),
+    phone: faker.phone.phoneNumber(),
+    address: faker.address.streetAddress(),
+    med: faker.random.word(),
+    diagnosis: faker.random.word(),
+    additionalInfo: faker.lorem.sentence(),
+
+}
+
+
+test("response should be identified value", (done) => {
+  request(app).get('/api/patient')
+          const response = patientInfo
+          expect(typeof response).toBe('object');
+          expect(response).toHaveProperty('med')
+          expect(response).not.toHaveProperty('meds');
+          expect(typeof response.name).toBe('string');
+          done();
+      })
+
 
 

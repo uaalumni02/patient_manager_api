@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --detectOpenHandles",
     "start:dev": "nodemon --exec babel-node ./server.js",
-    "build": "rimraf build/ && babel ./ --out-dir build/ --ignore ./node_modules",
+    "build": "babel src -d build",
     "start": "npm run build && node ./build/app.js"
   },
   "author": "Demeco B",
@@ -17,6 +17,7 @@
     "cors": "^2.8.5",
     "dotenv": "^5.0.1",
     "express": "^4.16.4",
+    "faker": "^4.1.0",
     "jsonwebtoken": "^8.4.0",
     "moment": "^2.22.2",
     "mongoose": "^5.3.15",
