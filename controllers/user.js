@@ -55,8 +55,10 @@ router.createUser = ('/', (req, res, next) => {
 
 //user login
 router.logIn = ('/login', (req, res, next) => {
-    
-    User.find({ username: req.body.username })
+
+    User.find({
+        username: req.body.username,
+    })
         .exec()
         .then(user => {
             if (user.length < 1) {
@@ -65,25 +67,25 @@ router.logIn = ('/login', (req, res, next) => {
                 });
 
             }
-            bcrypt.hash(req.body.password, user[0].password, (err, result) => {
+            bcrypt.compare(req.body.password, user[0].password, (err, result) => {
                 if (err) {
                     return res.status(401).json({
                         message: 'auth failed'
                     });
                 }
                 if (result) {
-                   const token = jwt.sign(
-                       {
-                        username:user[0].username,
-                        userId:user[0]._id
-                    },
-                     process.env.JWT_KEY, 
-                     {
-                         expiresIn: '365d'
-                     }
+                    const token = jwt.sign(
+                        {
+                            username: user[0].username,
+                            userId: user[0]._id
+                        },
+                        process.env.JWT_KEY,
+                        {
+                            expiresIn: '365d'
+                        }
                     );
                     return res.status(200).json({
-                        token:token,
+                        token: token,
                     });
                 }
                 res.status(401).json({
