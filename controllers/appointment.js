@@ -24,7 +24,6 @@ router.addAppointment = ('/', (req, res, next) => {
             PatientInformation.findById(result.patientId)
                 .exec()
                 .then(patientData => {
-                    console.log(patientData)
                     res.status(201).json({
                         message: 'added to database',
                         updatedAppointment: appointmentInformation,

@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
+
 const isValidAttendees = (attendees) => {
     const regExp = /^([A-Za-z]+[,.]?[ ]?|[A-Za-z]+['-]?)+$/i
     return regExp.test(attendees)
@@ -17,7 +18,7 @@ const isValidAttendees = (attendees) => {
 
 const appointmentInformationSchema = mongoose.Schema({
     patientId: {
-        // type: Schema.Types.ObjectId
+        type: String
     },
     attendees: {
         type: String,
