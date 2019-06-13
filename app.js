@@ -14,6 +14,7 @@ import patientRoutes from './routes/patient.route';
 import appointmentRoutes  from './routes/appointment.route';
 import userRoutes from './routes/user.route';
 import routes from './controllers/patient';
+import patientSearchIdRoutes from './routes/patientIdSearch.route';
 
 const app = express();
 app.use(cors());
@@ -33,7 +34,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/patient', patientRoutes);
 app.use('/api/appointment', appointmentRoutes);
 app.use('/api/user', userRoutes);
-app.use('/api/patient', routes);
+app.use('/api/', patientSearchIdRoutes);
 
 app.get('/', (req, res) => {
     res.send('Please use routes for application access');
