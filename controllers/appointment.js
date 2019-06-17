@@ -95,9 +95,9 @@ router.removeAppointment = ('/:id', (req, res) => {
 });
 
 //search appt by ID
-router.searchAppointment = ('/:id', (req, res, next) => {
-    const id = req.params.id;
-    AppointmentInformation.findById({ '_id': id })
+router.searchAppointment = ('/:patientId', (req, res, next) => {
+    const patientId = req.params.patientId;
+    AppointmentInformation.findOne({ 'patientId': patientId })
         .exec()
         .then(doc => {
             console.log("from database", doc);
