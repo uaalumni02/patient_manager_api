@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --detectOpenHandles",
     "start:dev": "nodemon --exec babel-node ./server.js",
-    "build": "babel src -d build",
+    "build": "babel  -d build",
     "start": "npm run build && node ./build/app.js"
   },
   "author": "Demeco B",
