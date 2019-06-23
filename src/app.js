@@ -18,6 +18,8 @@ import patientSearchIdRoutes from './routes/patientIdSearch.route';
 
 const app = express();
 
+mongoose.Promise = global.Promise
+
 const port = process.env.PORT || 3000;
 
 app.use(cors());
