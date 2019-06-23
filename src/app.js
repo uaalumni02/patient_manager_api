@@ -1,6 +1,6 @@
 import 'dotenv/config'
 import express from 'express';
-import mongoose  from 'mongoose';
+import mongoose from 'mongoose';
 import cors from 'cors';
 
 
@@ -11,7 +11,7 @@ import UserInformation from './models/user';
 
 //import routes
 import patientRoutes from './routes/patient.route';
-import appointmentRoutes  from './routes/appointment.route';
+import appointmentRoutes from './routes/appointment.route';
 import userRoutes from './routes/user.route';
 import routes from './controllers/patient';
 import patientSearchIdRoutes from './routes/patientIdSearch.route';
@@ -24,11 +24,11 @@ app.use(cors());
 const DB_URL = process.env.MONGO_URL;
 
 // Connect to mongoose
-mongoose.connect(DB_URL, (err) => {
+mongoose.connect(DB_URL, { useNewUrlParser: true }, (err) => {
     if (err)
         return console.log('Unable to Connect to MongoDB')
     return console.log('Connection Successful')
-});
+})
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
