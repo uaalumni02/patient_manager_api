@@ -1,6 +1,6 @@
 import 'dotenv/config'
 import express from 'express';
-import mongoose  from 'mongoose';
+import mongoose, { MongooseDocument } from 'mongoose';
 import cors from 'cors';
 
 
