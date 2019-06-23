@@ -1,6 +1,6 @@
 import 'dotenv/config'
 import express from 'express';
-import mongoose from 'mongoose';
+import mongoose  from 'mongoose';
 import cors from 'cors';
 
 
@@ -11,7 +11,7 @@ import UserInformation from './models/user';
 
 //import routes
 import patientRoutes from './routes/patient.route';
-import appointmentRoutes from './routes/appointment.route';
+import appointmentRoutes  from './routes/appointment.route';
 import userRoutes from './routes/user.route';
 import routes from './controllers/patient';
 import patientSearchIdRoutes from './routes/patientIdSearch.route';
