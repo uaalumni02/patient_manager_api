@@ -17,6 +17,9 @@ import routes from './controllers/patient';
 import patientSearchIdRoutes from './routes/patientIdSearch.route';
 
 const app = express();
+
+const port = process.env.PORT || 3000;
+
 app.use(cors());
 const DB_URL = process.env.MONGO_URL;
 
@@ -40,4 +43,4 @@ app.get('/', (req, res) => {
     res.send('Please use routes for application access');
 });
 
-export default app;
+app.listen(port, () => console.log('server is running'));
